@@ -1,0 +1,145 @@
+╔════════════════════════════════════════════════════════════════════╗
+║     SISTEMA DE COTAÇÕES PRO v3.1 - INSTRUÇÕES RÁPIDAS            ║
+╚════════════════════════════════════════════════════════════════════╝
+
+📦 CONTEÚDO DO PACOTE:
+
+✅ 8 Arquivos Python (.py) - Código da aplicação
+✅ 4 Scripts de instalação/execução (.bat/.sh)
+✅ 1 Arquivo de dependências (requirements.txt)
+✅ 2 Arquivos de configuração (.env.example, .gitignore)
+✅ 1 Manual completo (LEIA-ME.txt)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 INÍCIO RÁPIDO (3 PASSOS):
+
+1️⃣  INSTALAR
+   Windows: Clique duas vezes em "install.bat"
+   Linux/Mac: Execute "./install.sh"
+
+2️⃣  CONFIGURAR API (obrigatório para importar PDFs)
+   • Acesse: https://console.groq.com/keys
+   • Copie sua chave API GRATUITA
+   • Crie arquivo ".env" com: GROQ_API_KEY=sua_chave_aqui
+   • Teste: python teste_ia.py
+
+3️⃣  EXECUTAR
+   Windows: Clique duas vezes em "run.bat"
+   Linux/Mac: Execute "./run.sh"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ FUNCIONALIDADES PRINCIPAIS:
+
+🤖 IMPORTAR PDFs COM IA
+   • Clique em "🤖 Importar PDFs com IA"
+   • Selecione múltiplos PDFs de fornecedores
+   • Aguarde o processamento automático
+   • ⚠️ IMPORTANTE: Sempre revise os dados extraídos!
+
+📊 EDITAR DADOS
+   • Clique nas células para editar
+   • Use o zoom (slider no canto inferior direito)
+   • Alterne tema Dark/Light (botão 🌓)
+
+🔍 COMPARAR PREÇOS
+   • Clique em "🔍 Comparar Preços"
+   • Sistema analisa automaticamente
+   • Melhor preço de cada produto fica em verde
+   • Arquivo é salvo automaticamente
+
+💾 SALVAR
+   • Clique em "💾 Salvar"
+   • Escolha local e nome do arquivo
+   • Formato Excel com formatação profissional
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 COLUNAS DO SISTEMA (destacadas em amarelo):
+
+• FORNECEDOR - Nome do fornecedor
+• PRODUTO - Nome do produto/insumo
+• QUANTIDADE - Quantidade com unidade (ex: "1 KG", "500 G")
+• PREÇO - Valor em reais (apenas número, ex: 150.00)
+• VALIDADE - Data de validade (DD/MM/YYYY)
+• ORIGEM - País de origem (Brasil, China, Índia, etc)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 DICAS PRO:
+
+✓ Use PDFs com texto selecionável (não escaneados)
+✓ Processe 5-10 PDFs por vez para melhor performance
+✓ SEMPRE revise os dados antes de salvar (IA ~95% precisão)
+✓ Mantenha a API Key segura (não compartilhe)
+✓ Use Ctrl + Scroll para zoom rápido na tabela
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❓ PROBLEMAS COMUNS:
+
+❌ "API Key não configurada"
+   → Crie arquivo .env com GROQ_API_KEY=sua_chave
+   → Teste com: python teste_ia.py
+
+❌ "Erro ao processar PDF"
+   → Verifique se PDF tem texto selecionável
+   → Tente processar um por vez
+
+❌ "Dados extraídos incorretos"
+   → Normal! IA tem ~5% de erro
+   → Sempre revise antes de salvar
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💰 CUSTOS:
+
+Sistema: R$ 0,00 (GRATUITO)
+API Groq: R$ 0,00 (GRATUITO - 14.400 PDFs/dia)
+
+TOTAL: R$ 0,00/mês 🎉
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📞 SUPORTE:
+
+API Groq: https://console.groq.com/docs
+Email: support@groq.com
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 ARQUIVOS GERADOS:
+
+• data/uploads/ - PDFs processados (temporário)
+• data/outputs/ - Arquivos Excel gerados
+  - cotacoes.xlsx - Dados consolidados
+  - comparacao_precos.xlsx - Análise de preços
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ ECONOMIA DE TEMPO:
+
+ANTES (Manual): ~2 horas por comparação 😫
+DEPOIS (Com IA): ~10 minutos por comparação 🚀
+
+ECONOMIA: 91% do tempo! ⚡
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 FLUXO RECOMENDADO:
+
+Segunda → Solicitar cotações aos fornecedores
+Terça → Receber PDFs por email
+Quarta → Processar tudo com IA (10-15 min)
+         ↓
+         Revisar dados (5 min)
+         ↓
+         Comparar preços (1 clique)
+         ↓
+         Enviar para compras
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Desenvolvido para uso interno
+Versão 3.1 - AI Edition

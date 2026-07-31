@@ -1,0 +1,191 @@
+╔════════════════════════════════════════════════════════════════════╗
+║              PROBLEMAS CONHECIDOS E SOLUÇÕES                       ║
+╚════════════════════════════════════════════════════════════════════╝
+
+⚠️ IMPORTANTE: Leia antes de usar!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣ COMPARAÇÃO DE PRODUTOS COM NOMES DIFERENTES
+
+❓ PROBLEMA:
+Fornecedores diferentes podem usar nomes diferentes para o mesmo produto.
+Exemplos:
+- "Vitamina B12 (Cianocobalamina)" vs "Cianocobalamina"
+- "Cha Verde Ext. 50%" vs "Chá Verde Extrato Seco 50%"
+
+✅ SOLUÇÃO ATUAL:
+O sistema ordena alfabeticamente e destaca o melhor preço POR NOME EXATO.
+Produtos com nomes diferentes NÃO são agrupados automaticamente.
+
+📝 COMO LIDAR COM ISSO:
+1. ANTES de comparar, padronize os nomes na tabela
+2. Edite manualmente produtos similares para terem o MESMO nome
+3. Depois rode a comparação
+
+Exemplo:
+Fornecedor A: "Vit. B12 (methylcobalamin)"
+Fornecedor B: "Vitamina B12 Methylcobalamina"
+→ Edite ambos para: "Vitamina B12 Methylcobalamin"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2️⃣ IA NÃO TEM 100% DE PRECISÃO
+
+❓ PROBLEMA:
+A IA pode cometer erros na extração de dados:
+- Confundir preço unitário com preço total
+- Interpretar mal quantidades
+- Errar na formatação de datas
+- Misturar dados de linhas adjacentes
+
+✅ SOLUÇÃO:
+SEMPRE REVISE OS DADOS ANTES DE SALVAR!
+
+📝 CHECKLIST DE REVISÃO:
+□ Preços fazem sentido?
+□ Quantidades estão corretas?
+□ Datas estão no formato DD/MM/YYYY?
+□ Fornecedor está identificado?
+□ Produtos não estão duplicados?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3️⃣ ALGUNS PDFs NÃO SÃO PROCESSADOS CORRETAMENTE
+
+❓ PROBLEMA:
+PDFs escaneados (imagens) ou com formatação complexa podem:
+- Não ter texto extraível
+- Ter texto embaralhado
+- Perder estrutura de tabelas
+
+✅ SOLUÇÃO:
+1. Use PDFs gerados digitalmente (não escaneados)
+2. Se for escaneado, use OCR antes
+3. Se falhar, digite manualmente (modo tradicional)
+
+📝 COMO IDENTIFICAR:
+Se o texto extraído estiver muito bagunçado ou vazio,
+o PDF provavelmente é uma imagem escaneada.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4️⃣ MÚLTIPLOS FRACIONAMENTOS DO MESMO PRODUTO
+
+❓ PROBLEMA:
+Como você mencionou, a Caldic oferece 4 fracionamentos:
+- 50g a R$ 111,50
+- 100g a R$ 222,00
+- 500g a R$ 1.060,00
+- 1000g a R$ 2.016,00
+
+Outros fornecedores só oferecem o fracionamento solicitado.
+
+✅ SOLUÇÃO ATUAL:
+A IA cria UMA LINHA para CADA quantidade/preço.
+Na comparação, você verá TODAS as opções.
+
+📝 COMO USAR:
+1. Na comparação, filtre pela quantidade que você quer
+2. Ou compare o preço por grama:
+   - 50g: R$ 2,23/g
+   - 100g: R$ 2,22/g
+   - 500g: R$ 2,12/g (MELHOR)
+   - 1000g: R$ 2,016/g (MELHOR)
+
+DICA: Adicione uma coluna "PREÇO/G" no Excel para facilitar.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5️⃣ TABELA DO PDF NÃO TEM LIMITE CLARO
+
+❓ PROBLEMA:
+Como você mencionou, se a IA não conseguir identificar onde
+a tabela termina, pode extrair dados irrelevantes.
+
+✅ SOLUÇÃO:
+A IA usa o contexto do texto para identificar produtos.
+MAS você DEVE revisar e deletar linhas incorretas.
+
+📝 SINAIS DE DADOS INCORRETOS:
+- Produtos com nomes estranhos ou muito longos
+- Preços irreais (muito altos ou baixos)
+- Linhas com campos vazios (N/A)
+- Texto de rodapé ou cabeçalho na coluna PRODUTO
+
+AÇÃO: Delete essas linhas antes de salvar!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6️⃣ API GROQ PODE TER LIMITES
+
+❓ PROBLEMA:
+API gratuita tem limite de:
+- 14.400 requisições por dia
+- 1 PDF = 1 requisição
+- Timeout de 60 segundos por requisição
+
+✅ SOLUÇÃO:
+1. Processe PDFs em lotes pequenos (5-10 por vez)
+2. Se der timeout, tente PDF menor ou mais simples
+3. Se atingir limite diário, aguarde até o próximo dia
+
+📝 CONTORNANDO LIMITES:
+- Processe PDFs mais complexos em dias separados
+- Use o modo manual se necessário
+- 14.400/dia é MUITO para uso normal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7️⃣ SISTEMA NÃO ABRE (ERRO DE INSTALAÇÃO)
+
+❓ PROBLEMA:
+Erro ao executar: "No module named 'PyQt6'"
+
+✅ SOLUÇÃO:
+1. Certifique-se que executou install.bat ou install.sh
+2. Verifique se Python 3.8+ está instalado
+3. Tente: pip install -r requirements.txt manualmente
+
+📝 COMANDO DE EMERGÊNCIA:
+pip install PyQt6 pandas openpyxl PyPDF2 requests python-dotenv
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+8️⃣ COMPARAÇÃO NÃO FUNCIONA COMO ESPERADO
+
+❓ PROBLEMA:
+Comparação agrupa produtos de forma estranha ou
+não destaca o melhor preço corretamente.
+
+✅ SOLUÇÃO:
+1. Verifique se coluna PREÇO é numérica (sem "R$", só números)
+2. Padronize nomes de produtos ANTES de comparar
+3. Delete linhas com dados inválidos
+
+📝ORE PRÁTICAS:
+- Preço: "150.00" ✅
+- Preço: "R$ 150,00" ❌
+- Preço: "150" ✅
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 DICA FINAL: FLUXO RECOMENDADO
+
+1. Importar PDFs com IA
+2. ⚠️ REVISAR dados na tabela (5-10 min)
+3. Padronizar nomes de produtos similares
+4. Deletar linhas incorretas
+5. Comparar preços
+6. Revisar comparação
+7. Salvar e usar!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+O sistema funciona MUITO BEM quando usado corretamente!
+A chave é: SEMPRE REVISAR OS DADOS DA IA!
+
+IA é assistente, não substituto total do trabalho manual.
+Mas economiza ~90% do tempo! 🚀
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
