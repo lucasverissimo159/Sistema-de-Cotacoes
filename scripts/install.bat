@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0.."
 echo ========================================
 echo Sistema de Cotacoes Pro v3.1
 echo Instalando dependencias...
@@ -23,6 +24,6 @@ echo Instalacao concluida!
 echo.
 echo PROXIMO PASSO:
 echo 1. Configure a API Key do Groq
-echo 2. Execute: run.bat
+echo 2. Execute: scripts\run.bat
 echo ========================================
 pause

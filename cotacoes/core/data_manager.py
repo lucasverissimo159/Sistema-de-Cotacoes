@@ -3,7 +3,7 @@ from openpyxl import load_workbook, Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from pathlib import Path
 from typing import List, Dict, Any
-from config import COLUNAS_IMPORTANTES
+from ..config import COLUNAS_IMPORTANTES
 
 class DataManager:
     def __init__(self):

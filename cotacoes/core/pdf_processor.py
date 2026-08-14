@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import PyPDF2
 from typing import List, Dict, Any
-from config import GROQ_API_KEY, GROQ_MODEL, GROQ_API_URL
+from ..config import GROQ_API_KEY, GROQ_MODEL, GROQ_API_URL
 
 class PDFProcessor:
     def __init__(self, api_key: str = None):

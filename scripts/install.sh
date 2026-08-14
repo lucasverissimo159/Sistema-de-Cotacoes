@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")/.." || exit 1
 
 echo "========================================"
 echo "Sistema de Cotações Pro v3.1"
@@ -22,5 +23,5 @@ echo "Instalação concluída!"
 echo
 echo "PRÓXIMO PASSO:"
 echo "1. Configure a API Key do Groq"
-echo "2. Execute: ./run.sh"
+echo "2. Execute: ./scripts/run.sh"
 echo "========================================"

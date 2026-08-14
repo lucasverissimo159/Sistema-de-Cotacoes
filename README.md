@@ -65,15 +65,23 @@ depender de PDFs reais:
 
 ```
 sistema_cotacoes/
-├── app.py               # Ponto de entrada (PyQt6)
-├── main_window.py       # Janela principal
-├── config.py            # Configuração (lê GROQ_API_KEY do ambiente)
-├── pdf_processor.py     # Extração via API do Groq
-├── data_manager.py      # Manipulação de dados
-├── table_model.py       # Modelo da tabela
-├── styles.py            # Estilos da UI
-├── .env.example         # Template de configuração (sem segredos)
-└── data/                # uploads/ e outputs/ (runtime, não versionados)
+├── app.py                  # Ponto de entrada (PyQt6)
+├── requirements.txt
+├── .env.example            # Template de configuração (sem segredos)
+├── cotacoes/               # Pacote principal
+│   ├── config.py           # Configuração (lê GROQ_API_KEY do ambiente)
+│   ├── core/
+│   │   ├── data_manager.py # Manipulação de dados / Excel
+│   │   └── pdf_processor.py# Extração via API do Groq
+│   └── ui/
+│       ├── main_window.py  # Janela principal
+│       ├── table_model.py  # Modelo da tabela
+│       └── styles.py       # Estilos da UI
+├── scripts/                # install/run (.bat e .sh)
+├── docs/                   # Guias (.txt)
+├── tests/                  # teste_ia.py
+├── exemplos/               # Planilhas de exemplo (fictícias)
+└── data/                   # uploads/ e outputs/ (runtime, não versionados)
 ```
 
 ## 🔒 Segurança

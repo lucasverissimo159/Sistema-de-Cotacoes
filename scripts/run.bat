@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0.."
 echo ========================================
 echo Sistema de Cotacoes Pro v3.1
 echo Iniciando aplicacao...

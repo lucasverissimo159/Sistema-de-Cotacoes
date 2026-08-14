@@ -2,7 +2,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-BASE_DIR = Path(__file__).parent
+# Raiz do projeto (config.py fica em cotacoes/, portanto sobe um nivel)
+BASE_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = BASE_DIR / 'data'
 UPLOADS_DIR = DATA_DIR / 'uploads'
 OUTPUTS_DIR = DATA_DIR / 'outputs'

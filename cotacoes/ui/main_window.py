@@ -7,11 +7,11 @@ from PyQt6.QtGui import QIcon, QFont
 from pathlib import Path
 import pandas as pd
 
-from table_model import PandasModel
-from data_manager import DataManager
-from pdf_processor import PDFProcessor
-from styles import get_light_theme, get_dark_theme
-from config import ZOOM_MIN, ZOOM_MAX, ZOOM_DEFAULT, ZOOM_STEP, OUTPUTS_DIR
+from .table_model import PandasModel
+from ..core.data_manager import DataManager
+from ..core.pdf_processor import PDFProcessor
+from .styles import get_light_theme, get_dark_theme
+from ..config import ZOOM_MIN, ZOOM_MAX, ZOOM_DEFAULT, ZOOM_STEP, OUTPUTS_DIR
 
 class PDFProcessorThread(QThread):
     progress = pyqtSignal(int, str)
@@ -170,7 +170,7 @@ class MainWindow(QMainWindow):
         if not files:
             return
         
-        from config import GROQ_API_KEY
+        from ..config import GROQ_API_KEY
         if not GROQ_API_KEY:
             QMessageBox.critical(
                 self,

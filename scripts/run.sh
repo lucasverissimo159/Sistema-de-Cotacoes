@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")/.." || exit 1
 
 echo "========================================"
 echo "Sistema de Cotações Pro v3.1"

@@ -1,7 +1,7 @@
 import sys
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import Qt
-from main_window import MainWindow
+from cotacoes.ui.main_window import MainWindow
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
