@@ -51,6 +51,16 @@ Os PDFs enviados vão para `data/uploads/` e as planilhas geradas para
 `data/outputs/` — ambos **não versionados** (podem conter dados reais de
 fornecedores/cotações).
 
+### 🧪 Dados de exemplo
+
+A pasta `exemplos/` contém planilhas **fictícias** para testar a aplicação sem
+depender de PDFs reais:
+
+- `exemplos/cotacoes_exemplo.xlsx` — cotações de exemplo (8 produtos × 3
+  fornecedores). Abra em **📂 Carregar Excel** e clique em **Comparar**.
+- `exemplos/comparacao_precos_exemplo.xlsx` — exemplo do resultado da
+  comparação (ordenado por produto/preço, com o mais barato destacado).
+
 ## 🗂️ Estrutura
 
 ```
