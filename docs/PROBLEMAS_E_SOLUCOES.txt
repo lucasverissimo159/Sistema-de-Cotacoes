@@ -73,7 +73,7 @@ o PDF provavelmente é uma imagem escaneada.
 4️⃣ MÚLTIPLOS FRACIONAMENTOS DO MESMO PRODUTO
 
 ❓ PROBLEMA:
-Como você mencionou, a Caldic oferece 4 fracionamentos:
+Como no exemplo, um fornecedor oferece 4 fracionamentos:
 - 50g a R$ 111,50
 - 100g a R$ 222,00
 - 500g a R$ 1.060,00

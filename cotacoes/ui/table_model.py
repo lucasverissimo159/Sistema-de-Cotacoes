@@ -2,6 +2,8 @@ from PyQt6.QtCore import Qt, QAbstractTableModel, QModelIndex, QVariant
 from PyQt6.QtGui import QColor
 import pandas as pd
 
+from ..core.data_manager import parse_price
+
 class PandasModel(QAbstractTableModel):
     def __init__(self, df=None):
         super().__init__()
@@ -54,6 +56,37 @@ class PandasModel(QAbstractTableModel):
     def flags(self, index):
         return Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEditable
     
+    def sort(self, column, order=Qt.SortOrder.AscendingOrder):
+        """Ordena a tabela ao clicar no cabeçalho.
+
+        Usa ordenação numérica quando a coluna parece conter números (ex.:
+        PREÇO em formatos diversos); caso contrário, ordena como texto
+        (case-insensitive). Sem isso, o clique no cabeçalho não faz nada.
+        """
+        if self._df is None or self._df.empty:
+            return
+        if column < 0 or column >= len(self._df.columns):
+            return
+
+        col = self._df.columns[column]
+        ascending = (order == Qt.SortOrder.AscendingOrder)
+
+        numeric = self._df[col].map(parse_price)
+        if numeric.notna().sum() >= max(1, len(self._df) // 2):
+            order_key = numeric.values          # maioria numérica -> ordena por número
+        else:
+            order_key = self._df[col].astype(str).str.lower().values
+
+        self.layoutAboutToBeChanged.emit()
+        self._df = (
+            self._df.assign(_sort_key=order_key)
+            .sort_values('_sort_key', ascending=ascending,
+                         kind='mergesort', na_position='last')
+            .drop(columns='_sort_key')
+            .reset_index(drop=True)
+        )
+        self.layoutChanged.emit()
+
     def update_dataframe(self, df):
         self.beginResetModel()
         self._df = df
