@@ -13,6 +13,20 @@ from ..core.pdf_processor import PDFProcessor
 from .styles import get_light_theme, get_dark_theme
 from ..config import ZOOM_MIN, ZOOM_MAX, ZOOM_DEFAULT, ZOOM_STEP, OUTPUTS_DIR
 
+
+class TableAutoFitMixin:
+    """Mixin pequeno para melhorar a apresentação da tabela em UI."""
+
+    def fit_table_to_content(self):
+        try:
+            if getattr(self, 'table_view', None) is None:
+                return
+            self.table_view.resizeColumnsToContents()
+            self.table_view.resizeRowsToContents()
+            self.table_view.horizontalHeader().setStretchLastSection(True)
+        except Exception:
+            pass
+
 class PDFProcessorThread(QThread):
     progress = pyqtSignal(int, str)
     finished = pyqtSignal(list)
@@ -44,16 +58,16 @@ class PDFProcessorThread(QThread):
         except Exception as e:
             self.error.emit(str(e))
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, TableAutoFitMixin):
     def __init__(self):
         super().__init__()
         self.data_manager = DataManager()
         self.zoom_level = ZOOM_DEFAULT
         self.is_dark_theme = False
-        
+
         self.setWindowTitle("Sistema de Cotações Pro v3.1 - AI Edition")
         self.setGeometry(100, 100, 1400, 800)
-        
+
         self.setup_ui()
         self.apply_theme()
     
@@ -231,12 +245,28 @@ class MainWindow(QMainWindow):
             "",
             "Excel Files (*.xlsx *.xls)"
         )
-        
+
         if file_path:
             try:
                 self.data_manager.load_excel(file_path)
                 self.model.update_dataframe(self.data_manager.get_dataframe())
+                self.fit_table_to_content()
                 self.status_label.setText(f"✅ Arquivo carregado: {Path(file_path).name}")
+
+                # Diagnóstico suave de visualização da tabela. Não bloqueia; apenas orienta.
+                report = self.data_manager.validate_dataframe(self.data_manager.get_dataframe())
+                if not report['is_valid']:
+                    QMessageBox.warning(
+                        self,
+                        "Aviso de planilha",
+                        self.data_manager.format_validation_report(report)
+                    )
+                else:
+                    QMessageBox.information(
+                        self,
+                        "Arquivo carregado",
+                        "Planilha carregada com validação básica. A tabela foi ajustada automaticamente para melhor visualização."
+                    )
             except Exception as e:
                 QMessageBox.critical(self, "Erro", f"Erro ao carregar arquivo:\n{str(e)}")
     
@@ -244,17 +274,29 @@ class MainWindow(QMainWindow):
         if self.data_manager.df is None or self.data_manager.df.empty:
             QMessageBox.warning(self, "Aviso", "Não há dados para salvar.")
             return
-        
+
+        # A leitura do modelo de tela evita que a UI tenha uma grade editável sem
+        # refletir no DataFrame de saída.
+        self.data_manager.df = self.model.get_dataframe()
+        report = self.data_manager.validate_dataframe(self.data_manager.df)
+        if not report['is_valid']:
+            QMessageBox.critical(
+                self,
+                "Bloqueio de exportação",
+                self.data_manager.format_validation_report(report)
+            )
+            self.status_label.setText('⚠️ Exportação bloqueada por dados incompletos')
+            return
+
         file_path, _ = QFileDialog.getSaveFileName(
             self,
             "Salvar Arquivo Excel",
             str(OUTPUTS_DIR / "cotacoes.xlsx"),
             "Excel Files (*.xlsx)"
         )
-        
+
         if file_path:
             try:
-                self.data_manager.df = self.model.get_dataframe()
                 saved_path = self.data_manager.save_excel(file_path)
                 self.status_label.setText(f"✅ Salvo: {Path(saved_path).name}")
                 QMessageBox.information(self, "Sucesso", f"Arquivo salvo com sucesso!\n\n{saved_path}")
